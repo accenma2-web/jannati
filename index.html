@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>جنتي — ازرع أثرك بذكرك</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg, #071b14 0%, #0d2a1f 55%, #071710 100%);
+      color: #f5f0df;
+      min-height: 100vh;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+      min-height: 100vh;
+      padding: 22px 16px 30px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 18px 10px 24px;
+    }
+
+    .logo {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 14px;
+      border: 1px solid rgba(218, 181, 77, .6);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      background: rgba(218, 181, 77, .08);
+      box-shadow: 0 0 35px rgba(218, 181, 77, .08);
+    }
+
+    h1 {
+      font-size: 34px;
+      color: #e5c66b;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      color: #d8d0bd;
+      font-size: 15px;
+    }
+
+    .land {
+      position: relative;
+      overflow: hidden;
+      min-height: 270px;
+      border-radius: 28px;
+      border: 1px solid rgba(218, 181, 77, .28);
+      background:
+        radial-gradient(circle at 50% 15%, rgba(218,181,77,.12), transparent 35%),
+        linear-gradient(180deg, #173c2c, #10291f);
+      box-shadow: 0 20px 50px rgba(0,0,0,.28);
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .land-title {
+      text-align: center;
+      font-size: 20px;
+      color: #e5c66b;
+      margin-bottom: 8px;
+    }
+
+    .land-note {
+      text-align: center;
+      color: #bdb8aa;
+      font-size: 12px;
+      line-height: 1.8;
+      max-width: 360px;
+      margin: auto;
+    }
+
+    .ground {
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -70px;
+      height: 150px;
+      border-radius: 50% 50% 0 0;
+      background: #163526;
+      border-top: 1px solid rgba(218,181,77,.14);
+    }
+
+    .seed {
+      position: absolute;
+      left: 50%;
+      bottom: 48px;
+      transform: translateX(-50%);
+      font-size: 48px;
+      opacity: .9;
+    }
+
+    .treasure-area {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .treasure {
+      position: absolute;
+      font-size: 28px;
+      animation: appear .5s ease;
+      filter: drop-shadow(0 0 8px rgba(229,198,107,.45));
+    }
+
+    @keyframes appear {
+      from {
+        transform: scale(.3);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .card {
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(218,181,77,.2);
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .card-title {
+      color: #e5c66b;
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .dhikr {
+      font-size: 25px;
+      line-height: 1.8;
+      text-align: center;
+      margin: 18px 0;
+      color: #fffaf0;
+    }
+
+    .counter {
+      text-align: center;
+      font-size: 46px;
+      font-weight: bold;
+      color: #e5c66b;
+      margin: 8px 0 18px;
+    }
+
+    .dhikr-button {
+      width: 100%;
+      border: 0;
+      border-radius: 18px;
+      padding: 17px;
+      font-size: 19px;
+      font-weight: bold;
+      color: #071710;
+      background: linear-gradient(135deg, #e5c66b, #c79f3d);
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+      transition: transform .12s ease;
+    }
+
+    .dhikr-button:active {
+      transform: scale(.97);
+    }
+
+    .effect {
+      display: none;
+      margin-top: 18px;
+      text-align: center;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(218,181,77,.08);
+      border: 1px solid rgba(218,181,77,.2);
+      color: #e9dfc8;
+      line-height: 1.8;
+      font-size: 13px;
+    }
+
+    .effect.show {
+      display: block;
+    }
+
+    .effect strong {
+      display: block;
+      color: #e5c66b;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .section {
+      border: 1px solid rgba(218,181,77,.18);
+      background: rgba(255,255,255,.04);
+      border-radius: 20px;
+      padding: 20px 12px;
+      text-align: center;
+      color: #f3eddd;
+    }
+
+    .section-icon {
+      font-size: 29px;
+      margin-bottom: 9px;
+    }
+
+    .section-title {
+      color: #e5c66b;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .section-text {
+      color: #aaa99e;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #85877d;
+      font-size: 10px;
+      line-height: 1.8;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="app">
+
+    <header class="header">
+      <div class="logo">🌿</div>
+      <h1>جنتي</h1>
+      <div class="tagline">ازرع أثرك بذكرك</div>
+    </header>
+
+    <section class="land">
+
+      <div class="land-title">🌿 أرضك الرمزية</div>
+
+      <p class="land-note">
+        مساحة رمزية تساعدك على تذكّر الله ومتابعة أعمالك،
+        مستوحاة من النصوص الموثوقة من القرآن والسنة.
+      </p>
+
+      <div class="treasure-area" id="treasureArea"></div>
+
+      <div class="seed" id="seed">🌱</div>
+
+      <div class="ground"></div>
+
+    </section>
+
+    <section class="card">
+
+      <div class="card-title">📿 أذكاري</div>
+
+      <div class="dhikr">
+        لا حول ولا قوة إلا بالله
+      </div>
+
+      <div class="counter" id="counter">0</div>
+
+      <button class="dhikr-button" id="dhikrButton">
+        اذكر الله
+      </button>
+
+      <div class="effect" id="effect">
+        <strong>💎 أثر رمزي: كنز</strong>
+        مستوحى من الحديث الوارد في صحيح مسلم.
+        <br>
+        هذا الأثر تمثيل رمزي فقط، وليس إثباتًا لمقدار الأجر.
+      </div>
+
+    </section>
+
+    <section class="sections">
+
+      <div class="section">
+        <div class="section-icon">📿</div>
+        <div class="section-title">أذكاري</div>
+        <div class="section-text">
+          أذكار موثقة مرتبطة بآثار ثابتة.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-icon">🤲</div>
+        <div class="section-title">أعمالي</div>
+        <div class="section-text">
+          سجل شخصي لأعمالك الصالحة.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-icon">❤️</div>
+        <div class="section-title">من أحب</div>
+        <div class="section-text">
+          عبّر عن محبتك والصفات التي تحبها.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-icon">📖</div>
+        <div class="section-title">تعلّم</div>
+        <div class="section-text">
+          تعلّم من القرآن والسنة الموثوقة.
+        </div>
+      </div>
+
+    </section>
+
+    <div class="footer-note">
+      جنتي مساحة رمزية للتذكير والتحفيز، وليست تصويرًا للجنة
+      ولا حكمًا على قبول الأعمال أو مصير الأشخاص.
+    </div>
+
+  </main>
+
+  <script>
+
+    const counterElement = document.getElementById("counter");
+    const button = document.getElementById("dhikrButton");
+    const effect = document.getElementById("effect");
+    const treasureArea = document.getElementById("treasureArea");
+    const seed = document.getElementById("seed");
+
+    let count = Number(localStorage.getItem("jannati_dhikr_count") || 0);
+
+    function updateScreen() {
+      counterElement.textContent = count;
+
+      if (count > 0) {
+        effect.classList.add("show");
+        seed.textContent = "🌱";
+      }
+    }
+
+    button.addEventListener("click", function () {
+
+      count++;
+
+      localStorage.setItem(
+        "jannati_dhikr_count",
+        count
+      );
+
+      updateScreen();
+
+      const treasure = document.createElement("div");
+
+      treasure.className = "treasure";
+      treasure.textContent = "💎";
+
+      const positions = [
+        { left: "18%", top: "58%" },
+        { left: "32%", top: "68%" },
+        { left: "68%", top: "57%" },
+        { left: "78%", top: "70%" },
+        { left: "48%", top: "63%" }
+      ];
+
+      const position =
+        positions[(count - 1) % positions.length];
+
+      treasure.style.left = position.left;
+      treasure.style.top = position.top;
+
+      treasureArea.appendChild(treasure);
+    });
+
+    updateScreen();
+
+  </script>
+
+</body>
+</html>
