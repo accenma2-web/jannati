@@ -1,283 +1,573 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جنتي — ازرع أثرك بذكرك</title>
 
-  <title>جنتي — ازرع أثرك بذكرك</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+:root{
+  --gold:#d9b65b;
+  --gold2:#f0d98a;
+  --deep:#061914;
+  --green:#0b2b20;
+  --green2:#123d2c;
+  --text:#f5f0df;
+  --muted:#b9b7aa;
+}
 
-    body {
-      font-family: Tahoma, Arial, sans-serif;
-      background: linear-gradient(180deg, #071b14 0%, #0d2a1f 55%, #071710 100%);
-      color: #f5f0df;
-      min-height: 100vh;
-    }
+body{
+  font-family:"Tahoma","Arial",sans-serif;
+  background:#04120e;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
 
-    .app {
-      width: 100%;
-      max-width: 520px;
-      margin: auto;
-      min-height: 100vh;
-      padding: 22px 16px 30px;
-    }
+button{font-family:inherit}
 
-    .header {
-      text-align: center;
-      padding: 18px 10px 24px;
-    }
+.app{
+  width:100%;
+  max-width:1180px;
+  margin:auto;
+  min-height:100vh;
+}
 
-    .logo {
-      width: 74px;
-      height: 74px;
-      margin: 0 auto 14px;
-      border: 1px solid rgba(218, 181, 77, .6);
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 38px;
-      background: rgba(218, 181, 77, .08);
-      box-shadow: 0 0 35px rgba(218, 181, 77, .08);
-    }
+/* ================= SPLASH ================= */
 
-    h1 {
-      font-size: 34px;
-      color: #e5c66b;
-      margin-bottom: 8px;
-    }
+.splash{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 30%,rgba(217,182,91,.14),transparent 30%),
+    linear-gradient(145deg,#04130e,#09251b 55%,#03100c);
+  transition:opacity .8s ease,visibility .8s ease;
+}
 
-    .tagline {
-      color: #d8d0bd;
-      font-size: 15px;
-    }
+.splash.hide{
+  opacity:0;
+  visibility:hidden;
+}
 
-    .land {
-      position: relative;
-      overflow: hidden;
-      min-height: 270px;
-      border-radius: 28px;
-      border: 1px solid rgba(218, 181, 77, .28);
-      background:
-        radial-gradient(circle at 50% 15%, rgba(218,181,77,.12), transparent 35%),
-        linear-gradient(180deg, #173c2c, #10291f);
-      box-shadow: 0 20px 50px rgba(0,0,0,.28);
-      padding: 22px;
-      margin-bottom: 18px;
-    }
+.splash-inner{
+  padding:30px;
+}
 
-    .land-title {
-      text-align: center;
-      font-size: 20px;
-      color: #e5c66b;
-      margin-bottom: 8px;
-    }
+.splash-icon{
+  width:100px;
+  height:100px;
+  margin:auto auto 25px;
+  border:1px solid rgba(240,217,138,.45);
+  border-radius:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:52px;
+  background:rgba(217,182,91,.07);
+  box-shadow:0 0 70px rgba(217,182,91,.1);
+}
 
-    .land-note {
-      text-align: center;
-      color: #bdb8aa;
-      font-size: 12px;
-      line-height: 1.8;
-      max-width: 360px;
-      margin: auto;
-    }
+.splash h1{
+  font-size:50px;
+  color:var(--gold2);
+  margin-bottom:8px;
+}
 
-    .ground {
-      position: absolute;
-      left: -10%;
-      right: -10%;
-      bottom: -70px;
-      height: 150px;
-      border-radius: 50% 50% 0 0;
-      background: #163526;
-      border-top: 1px solid rgba(218,181,77,.14);
-    }
+.splash p{
+  color:#d0cbbc;
+  font-size:17px;
+}
 
-    .seed {
-      position: absolute;
-      left: 50%;
-      bottom: 48px;
-      transform: translateX(-50%);
-      font-size: 48px;
-      opacity: .9;
-    }
+/* ================= HOME ================= */
 
-    .treasure-area {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
+.home{
+  padding:24px 22px 100px;
+}
 
-    .treasure {
-      position: absolute;
-      font-size: 28px;
-      animation: appear .5s ease;
-      filter: drop-shadow(0 0 8px rgba(229,198,107,.45));
-    }
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 0 24px;
+}
 
-    @keyframes appear {
-      from {
-        transform: scale(.3);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    .card {
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(218,181,77,.2);
-      border-radius: 24px;
-      padding: 22px;
-      margin-bottom: 16px;
-      backdrop-filter: blur(10px);
-    }
+.brand-icon{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  border:1px solid rgba(217,182,91,.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(217,182,91,.06);
+  font-size:25px;
+}
 
-    .card-title {
-      color: #e5c66b;
-      font-size: 19px;
-      margin-bottom: 8px;
-    }
+.brand h1{
+  font-size:24px;
+  color:var(--gold2);
+}
 
-    .dhikr {
-      font-size: 25px;
-      line-height: 1.8;
-      text-align: center;
-      margin: 18px 0;
-      color: #fffaf0;
-    }
+.brand span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
 
-    .counter {
-      text-align: center;
-      font-size: 46px;
-      font-weight: bold;
-      color: #e5c66b;
-      margin: 8px 0 18px;
-    }
+.profile{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  border:1px solid rgba(217,182,91,.3);
+  background:rgba(255,255,255,.04);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .dhikr-button {
-      width: 100%;
-      border: 0;
-      border-radius: 18px;
-      padding: 17px;
-      font-size: 19px;
-      font-weight: bold;
-      color: #071710;
-      background: linear-gradient(135deg, #e5c66b, #c79f3d);
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(0,0,0,.2);
-      transition: transform .12s ease;
-    }
+/* ================= HERO ================= */
 
-    .dhikr-button:active {
-      transform: scale(.97);
-    }
+.hero{
+  position:relative;
+  min-height:520px;
+  border-radius:38px;
+  overflow:hidden;
+  border:1px solid rgba(217,182,91,.22);
+  background:
+    radial-gradient(circle at 50% 18%,rgba(217,182,91,.16),transparent 28%),
+    linear-gradient(180deg,#123d2d 0%,#0a2b20 42%,#061b14 100%);
+  box-shadow:0 30px 90px rgba(0,0,0,.4);
+}
 
-    .effect {
-      display: none;
-      margin-top: 18px;
-      text-align: center;
-      padding: 14px;
-      border-radius: 16px;
-      background: rgba(218,181,77,.08);
-      border: 1px solid rgba(218,181,77,.2);
-      color: #e9dfc8;
-      line-height: 1.8;
-      font-size: 13px;
-    }
+.stars{
+  position:absolute;
+  inset:0;
+  opacity:.5;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1px);
+  background-size:85px 85px;
+}
 
-    .effect.show {
-      display: block;
-    }
+.moon{
+  position:absolute;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:#f1dfa0;
+  top:55px;
+  left:9%;
+  box-shadow:0 0 50px rgba(241,223,160,.22);
+}
 
-    .effect strong {
-      display: block;
-      color: #e5c66b;
-      font-size: 17px;
-      margin-bottom: 4px;
-    }
+.moon:after{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:#123d2d;
+  left:-27px;
+  top:-14px;
+}
 
-    .sections {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 18px;
-    }
+.world-title{
+  position:relative;
+  z-index:3;
+  text-align:center;
+  padding-top:58px;
+}
 
-    .section {
-      border: 1px solid rgba(218,181,77,.18);
-      background: rgba(255,255,255,.04);
-      border-radius: 20px;
-      padding: 20px 12px;
-      text-align: center;
-      color: #f3eddd;
-    }
+.world-title small{
+  color:#d4cda9;
+  font-size:12px;
+}
 
-    .section-icon {
-      font-size: 29px;
-      margin-bottom: 9px;
-    }
+.world-title h2{
+  font-size:34px;
+  color:var(--gold2);
+  margin:10px 0;
+}
 
-    .section-title {
-      color: #e5c66b;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+.world-title p{
+  color:#c5c4b8;
+  font-size:13px;
+}
 
-    .section-text {
-      color: #aaa99e;
-      font-size: 11px;
-      line-height: 1.6;
-    }
+/* ================= WORLD ================= */
 
-    .footer-note {
-      text-align: center;
-      color: #85877d;
-      font-size: 10px;
-      line-height: 1.8;
-      margin-top: 24px;
-    }
-  </style>
+.world{
+  position:absolute;
+  inset:190px 0 0;
+  overflow:hidden;
+}
+
+.hill{
+  position:absolute;
+  bottom:-120px;
+  width:700px;
+  height:350px;
+  border-radius:50%;
+  background:#0b3525;
+}
+
+.hill.one{right:-180px}
+.hill.two{left:-300px;background:#0a2c21}
+
+.path{
+  position:absolute;
+  width:420px;
+  height:170px;
+  border-radius:50%;
+  border:2px solid rgba(217,182,91,.12);
+  border-bottom-color:rgba(217,182,91,.25);
+  transform:rotate(-15deg);
+  bottom:45px;
+  left:50%;
+  margin-left:-210px;
+}
+
+.river{
+  position:absolute;
+  bottom:-30px;
+  left:50%;
+  width:130px;
+  height:390px;
+  transform:translateX(-50%) rotate(8deg);
+  background:linear-gradient(90deg,
+    transparent,
+    rgba(118,207,199,.2),
+    rgba(176,240,228,.4),
+    rgba(118,207,199,.2),
+    transparent);
+  border-radius:50%;
+  filter:blur(1px);
+}
+
+.tree{
+  position:absolute;
+  font-size:55px;
+  filter:drop-shadow(0 8px 12px rgba(0,0,0,.25));
+  animation:float 5s ease-in-out infinite;
+}
+
+.tree.t1{right:17%;bottom:90px}
+.tree.t2{left:18%;bottom:125px;font-size:45px}
+.tree.t3{right:35%;bottom:150px;font-size:40px}
+
+@keyframes float{
+  50%{transform:translateY(-5px)}
+}
+
+.world-treasure{
+  position:absolute;
+  font-size:35px;
+  animation:appear .5s ease;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:scale(.2)}
+  to{opacity:1;transform:scale(1)}
+}
+
+.enter{
+  position:absolute;
+  z-index:5;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(340px,80%);
+  padding:17px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;
+  color:#071710;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 15px 35px rgba(0,0,0,.3);
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+  margin-top:20px;
+}
+
+.card{
+  border:1px solid rgba(217,182,91,.17);
+  border-radius:26px;
+  background:rgba(255,255,255,.035);
+  padding:24px;
+  backdrop-filter:blur(15px);
+}
+
+.card h3{
+  color:var(--gold2);
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.card p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.dhikr{
+  font-size:24px;
+  text-align:center;
+  line-height:1.8;
+  margin:18px 0 5px;
+}
+
+.counter{
+  text-align:center;
+  color:var(--gold2);
+  font-size:48px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+.dhikr-btn{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:17px;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#071710;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.notice{
+  margin-top:14px;
+  padding:12px;
+  border-radius:14px;
+  background:rgba(217,182,91,.06);
+  color:#aaa99d;
+  font-size:11px;
+  line-height:1.7;
+}
+
+.stat{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.stat:last-child{border-bottom:0}
+
+.stat span:first-child{color:#aaa99d}
+.stat strong{color:var(--gold2)}
+
+/* ================= NAV ================= */
+
+.nav{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.nav-card{
+  border:1px solid rgba(217,182,91,.15);
+  background:rgba(255,255,255,.035);
+  border-radius:22px;
+  padding:19px 8px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.nav-card .icon{
+  font-size:27px;
+  margin-bottom:8px;
+}
+
+.nav-card strong{
+  display:block;
+  color:var(--gold2);
+  font-size:13px;
+}
+
+.nav-card small{
+  display:block;
+  color:#898d83;
+  font-size:9px;
+  margin-top:5px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
+}
+
+.modal.open{display:flex}
+
+.modal-box{
+  width:min(720px,100%);
+  max-height:85vh;
+  overflow:auto;
+  border:1px solid rgba(217,182,91,.25);
+  border-radius:30px;
+  background:#09231a;
+  padding:26px;
+  box-shadow:0 30px 100px rgba(0,0,0,.55);
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.modal-head h2{color:var(--gold2)}
+
+.close{
+  border:0;
+  background:rgba(255,255,255,.06);
+  color:white;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.info{
+  padding:18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.035);
+  margin-bottom:12px;
+}
+
+.info h3{
+  color:var(--gold2);
+  margin-bottom:8px;
+}
+
+.info p{
+  color:#c2c0b5;
+  font-size:13px;
+  line-height:1.9;
+}
+
+.source{
+  color:#a9965e!important;
+  margin-top:8px;
+  font-size:11px!important;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:750px){
+  .home{padding:16px 13px 90px}
+  .hero{min-height:590px;border-radius:30px}
+  .dashboard{grid-template-columns:1fr}
+  .nav{grid-template-columns:1fr 1fr}
+  .world-title h2{font-size:28px}
+  .moon{width:75px;height:75px}
+  .moon:after{width:75px;height:75px}
+}
+
+@media(min-width:900px){
+  .home{padding-top:28px}
+  .hero{min-height:570px}
+}
+</style>
 </head>
 
 <body>
 
-  <main class="app">
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-inner">
+    <div class="splash-icon">🌿</div>
+    <h1>جنتي</h1>
+    <p>ازرع أثرك بذكرك</p>
+  </div>
+</div>
 
-    <header class="header">
-      <div class="logo">🌿</div>
-      <h1>جنتي</h1>
-      <div class="tagline">ازرع أثرك بذكرك</div>
-    </header>
+<div class="app">
+<main class="home">
 
-    <section class="land">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">🌿</div>
+      <div>
+        <h1>جنتي</h1>
+        <span>ازرع أثرك بذكرك</span>
+      </div>
+    </div>
 
-      <div class="land-title">🌿 أرضك الرمزية</div>
+    <div class="profile">☰</div>
+  </header>
 
-      <p class="land-note">
-        مساحة رمزية تساعدك على تذكّر الله ومتابعة أعمالك،
-        مستوحاة من النصوص الموثوقة من القرآن والسنة.
-      </p>
+  <!-- MAIN WORLD -->
+  <section class="hero">
 
-      <div class="treasure-area" id="treasureArea"></div>
+    <div class="stars"></div>
+    <div class="moon"></div>
 
-      <div class="seed" id="seed">🌱</div>
+    <div class="world-title">
+      <small>عالم رمزي مستوحى من النصوص الموثقة</small>
+      <h2>عالمك في جنتي</h2>
+      <p>استكشف، تذكر، وتعلّم</p>
+    </div>
 
-      <div class="ground"></div>
+    <div class="world" id="world">
 
-    </section>
+      <div class="hill one"></div>
+      <div class="hill two"></div>
+      <div class="river"></div>
+      <div class="path"></div>
 
-    <section class="card">
+      <div class="tree t1">🌴</div>
+      <div class="tree t2">🌳</div>
+      <div class="tree t3">🌿</div>
 
-      <div class="card-title">📿 أذكاري</div>
+    </div>
+
+    <button class="enter" id="enterWorld">
+      🌿 ادخل إلى جنتي
+    </button>
+
+  </section>
+
+  <!-- DASHBOARD -->
+  <section class="dashboard">
+
+    <div class="card">
+
+      <h3>📿 ذكرك اليوم</h3>
+      <p>ابدأ بذكر الله، وسيُحفظ سجلك على جهازك.</p>
 
       <div class="dhikr">
         لا حول ولا قوة إلا بالله
@@ -285,117 +575,299 @@
 
       <div class="counter" id="counter">0</div>
 
-      <button class="dhikr-button" id="dhikrButton">
+      <button class="dhikr-btn" id="dhikrButton">
         اذكر الله
       </button>
 
-      <div class="effect" id="effect">
-        <strong>💎 أثر رمزي: كنز</strong>
-        مستوحى من الحديث الوارد في صحيح مسلم.
-        <br>
-        هذا الأثر تمثيل رمزي فقط، وليس إثباتًا لمقدار الأجر.
+      <div class="notice">
+        💎 الأثر المرئي هنا تمثيل رمزي مستوحى من الحديث،
+        وليس إثباتًا لمقدار الأجر أو حكمًا على قبول العمل.
       </div>
 
-    </section>
-
-    <section class="sections">
-
-      <div class="section">
-        <div class="section-icon">📿</div>
-        <div class="section-title">أذكاري</div>
-        <div class="section-text">
-          أذكار موثقة مرتبطة بآثار ثابتة.
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-icon">🤲</div>
-        <div class="section-title">أعمالي</div>
-        <div class="section-text">
-          سجل شخصي لأعمالك الصالحة.
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-icon">❤️</div>
-        <div class="section-title">من أحب</div>
-        <div class="section-text">
-          عبّر عن محبتك والصفات التي تحبها.
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-icon">📖</div>
-        <div class="section-title">تعلّم</div>
-        <div class="section-text">
-          تعلّم من القرآن والسنة الموثوقة.
-        </div>
-      </div>
-
-    </section>
-
-    <div class="footer-note">
-      جنتي مساحة رمزية للتذكير والتحفيز، وليست تصويرًا للجنة
-      ولا حكمًا على قبول الأعمال أو مصير الأشخاص.
     </div>
 
-  </main>
+    <div class="card">
 
-  <script>
+      <h3>🌿 رحلتك</h3>
+      <p>هذه الصفحة تجمع آثارك المسجلة.</p>
 
-    const counterElement = document.getElementById("counter");
-    const button = document.getElementById("dhikrButton");
-    const effect = document.getElementById("effect");
-    const treasureArea = document.getElementById("treasureArea");
-    const seed = document.getElementById("seed");
+      <div class="stat">
+        <span>الأذكار</span>
+        <strong id="statDhikr">0</strong>
+      </div>
 
-    let count = Number(localStorage.getItem("jannati_dhikr_count") || 0);
+      <div class="stat">
+        <span>الآثار الرمزية</span>
+        <strong id="statEffects">0</strong>
+      </div>
 
-    function updateScreen() {
-      counterElement.textContent = count;
+      <div class="stat">
+        <span>المستكشف</span>
+        <strong>V2</strong>
+      </div>
 
-      if (count > 0) {
-        effect.classList.add("show");
-        seed.textContent = "🌱";
-      }
+    </div>
+
+  </section>
+
+  <!-- NAVIGATION -->
+  <section class="nav">
+
+    <div class="nav-card" data-modal="dhikrModal">
+      <div class="icon">📿</div>
+      <strong>أذكاري</strong>
+      <small>أذكار موثقة</small>
+    </div>
+
+    <div class="nav-card" data-modal="deedsModal">
+      <div class="icon">🤲</div>
+      <strong>أعمالي</strong>
+      <small>سجل أعمالك</small>
+    </div>
+
+    <div class="nav-card" data-modal="loveModal">
+      <div class="icon">❤️</div>
+      <strong>من أحب</strong>
+      <small>محبة وصفات</small>
+    </div>
+
+    <div class="nav-card" data-modal="learnModal">
+      <div class="icon">📖</div>
+      <strong>تعلّم</strong>
+      <small>قرآن وسنة</small>
+    </div>
+
+  </section>
+
+</main>
+</div>
+
+<!-- MODALS -->
+
+<div class="modal" id="dhikrModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>📿 أذكاري</h2>
+      <button class="close">×</button>
+    </div>
+
+    <div class="info">
+      <h3>لا حول ولا قوة إلا بالله</h3>
+      <p>
+        ذِكر ورد في الحديث الصحيح بوصفه كنزًا من كنوز الجنة.
+      </p>
+      <p class="source">
+        صحيح مسلم — حديث 2704
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="deedsModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>🤲 أعمالي</h2>
+      <button class="close">×</button>
+    </div>
+
+    <div class="info">
+      <h3>سجل أعمالك</h3>
+      <p>
+        يمكنك في الإصدار القادم تسجيل أعمال مثل الصلاة والصدقة
+        والصيام وكفالة اليتيم. التسجيل شخصي ولا يعني أن التطبيق
+        يحكم على قبول العمل أو مقدار أجره.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="loveModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>❤️ من أحب</h2>
+      <button class="close">×</button>
+    </div>
+
+    <div class="info">
+      <h3>المرء مع من أحب</h3>
+      <p>
+        مساحة للتعبير عن محبتك لشخص والصفات التي تحبها فيه،
+        مع ربطها بالنصوص الشرعية المناسبة.
+      </p>
+      <p class="source">
+        الميزة الفنية القادمة لن تدّعي أن الشخص من أهل الجنة
+        ولن تصوّره داخل الجنة.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="learnModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>📖 تعلّم</h2>
+      <button class="close">×</button>
+    </div>
+
+    <div class="info">
+      <h3>أنهار الجنة</h3>
+      <p>
+        ورد في القرآن وصف الأنهار في الجنة من الماء واللبن
+        والخمر والعسل المصفّى.
+      </p>
+      <p class="source">
+        سورة محمد — الآية 15
+      </p>
+    </div>
+
+    <div class="info">
+      <h3>الظل والأشجار</h3>
+      <p>
+        وردت نصوص صحيحة في عِظم أشجار الجنة وظلالها.
+      </p>
+      <p class="source">
+        من الأحاديث الصحيحة في البخاري ومسلم
+      </p>
+    </div>
+
+    <div class="info">
+      <h3>تنبيه مهم</h3>
+      <p>
+        هذا العالم تصميم رمزي تعليمي وتحفيزي مستوحى من
+        النصوص الموثقة، وليس تصويرًا للجنة الحقيقية.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+/* ================= DATA ================= */
+
+const STORAGE_KEY = "jannati_v2_dhikr";
+
+let count = Number(localStorage.getItem(STORAGE_KEY) || 0);
+
+/* ================= ELEMENTS ================= */
+
+const counter = document.getElementById("counter");
+const statDhikr = document.getElementById("statDhikr");
+const statEffects = document.getElementById("statEffects");
+const button = document.getElementById("dhikrButton");
+const world = document.getElementById("world");
+const splash = document.getElementById("splash");
+
+/* ================= SAVE ================= */
+
+function save(){
+  localStorage.setItem(STORAGE_KEY, String(count));
+}
+
+/* ================= WORLD EFFECTS ================= */
+
+function renderEffects(){
+
+  document.querySelectorAll(".world-treasure").forEach(el => el.remove());
+
+  const maxVisible = Math.min(count, 40);
+
+  for(let i=0;i<maxVisible;i++){
+
+    const treasure = document.createElement("div");
+
+    treasure.className = "world-treasure";
+    treasure.textContent = "💎";
+
+    const x = 15 + ((i * 37) % 70);
+    const y = 45 + ((i * 29) % 43);
+
+    treasure.style.left = x + "%";
+    treasure.style.top = y + "%";
+
+    world.appendChild(treasure);
+  }
+
+  statEffects.textContent = maxVisible;
+}
+
+/* ================= UI ================= */
+
+function update(){
+
+  counter.textContent = count;
+  statDhikr.textContent = count;
+
+  renderEffects();
+}
+
+button.addEventListener("click",()=>{
+
+  count++;
+
+  save();
+  update();
+
+});
+
+/* ================= MODALS ================= */
+
+document.querySelectorAll(".nav-card").forEach(card=>{
+
+  card.addEventListener("click",()=>{
+
+    const id = card.dataset.modal;
+
+    document.getElementById(id).classList.add("open");
+
+  });
+
+});
+
+document.querySelectorAll(".close").forEach(btn=>{
+
+  btn.addEventListener("click",()=>{
+
+    btn.closest(".modal").classList.remove("open");
+
+  });
+
+});
+
+document.querySelectorAll(".modal").forEach(modal=>{
+
+  modal.addEventListener("click",(e)=>{
+
+    if(e.target === modal){
+      modal.classList.remove("open");
     }
 
-    button.addEventListener("click", function () {
+  });
 
-      count++;
+});
 
-      localStorage.setItem(
-        "jannati_dhikr_count",
-        count
-      );
+/* ================= ENTER WORLD ================= */
 
-      updateScreen();
+document.getElementById("enterWorld").addEventListener("click",()=>{
 
-      const treasure = document.createElement("div");
+  document.querySelector(".hero").scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
 
-      treasure.className = "treasure";
-      treasure.textContent = "💎";
+});
 
-      const positions = [
-        { left: "18%", top: "58%" },
-        { left: "32%", top: "68%" },
-        { left: "68%", top: "57%" },
-        { left: "78%", top: "70%" },
-        { left: "48%", top: "63%" }
-      ];
+/* ================= SPLASH ================= */
 
-      const position =
-        positions[(count - 1) % positions.length];
+setTimeout(()=>{
+  splash.classList.add("hide");
+},1800);
 
-      treasure.style.left = position.left;
-      treasure.style.top = position.top;
+/* ================= START ================= */
 
-      treasureArea.appendChild(treasure);
-    });
+update();
 
-    updateScreen();
-
-  </script>
+</script>
 
 </body>
 </html>
