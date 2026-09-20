@@ -2,417 +2,296 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>جنتي — ازرع أثرك بذكرك</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 
 :root{
-  --gold:#d9b65b;
-  --gold2:#f0d98a;
-  --deep:#061914;
-  --green:#0b2b20;
-  --green2:#123d2c;
-  --text:#f5f0df;
-  --muted:#b9b7aa;
+  --gold:#e5c66b;
+  --gold2:#f7e5a3;
+  --green:#071b14;
+  --green2:#0b3023;
+  --glass:rgba(7,24,18,.72);
+  --line:rgba(229,198,107,.24);
+  --text:#f7f1df;
+  --muted:#b9b7a8;
 }
 
-body{
-  font-family:"Tahoma","Arial",sans-serif;
-  background:#04120e;
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-button{font-family:inherit}
-
-.app{
+html,body{
+  margin:0;
   width:100%;
-  max-width:1180px;
-  margin:auto;
-  min-height:100vh;
+  height:100%;
+  overflow:hidden;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#030d09;
+  color:var(--text);
 }
 
-/* ================= SPLASH ================= */
-
-.splash{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  background:
-    radial-gradient(circle at 50% 30%,rgba(217,182,91,.14),transparent 30%),
-    linear-gradient(145deg,#04130e,#09251b 55%,#03100c);
-  transition:opacity .8s ease,visibility .8s ease;
-}
-
-.splash.hide{
-  opacity:0;
-  visibility:hidden;
-}
-
-.splash-inner{
-  padding:30px;
-}
-
-.splash-icon{
-  width:100px;
-  height:100px;
-  margin:auto auto 25px;
-  border:1px solid rgba(240,217,138,.45);
-  border-radius:32px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:52px;
-  background:rgba(217,182,91,.07);
-  box-shadow:0 0 70px rgba(217,182,91,.1);
-}
-
-.splash h1{
-  font-size:50px;
-  color:var(--gold2);
-  margin-bottom:8px;
-}
-
-.splash p{
-  color:#d0cbbc;
-  font-size:17px;
+button{
+  font-family:inherit;
+  cursor:pointer;
 }
 
 /* ================= HOME ================= */
 
-.home{
-  padding:24px 22px 100px;
+#home{
+  position:fixed;
+  inset:0;
+  overflow:auto;
+  background:
+    radial-gradient(circle at 50% 15%,rgba(229,198,107,.10),transparent 28%),
+    linear-gradient(145deg,#030e0a,#09261c 55%,#020a07);
+  transition:.6s;
 }
 
-.topbar{
+.home-inner{
+  width:min(1180px,100%);
+  margin:auto;
+  padding:24px;
+}
+
+.header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:10px 0 24px;
+  margin-bottom:22px;
 }
 
-.brand{
+.logo{
   display:flex;
   align-items:center;
   gap:12px;
 }
 
-.brand-icon{
-  width:48px;
-  height:48px;
-  border-radius:16px;
-  border:1px solid rgba(217,182,91,.3);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(217,182,91,.06);
+.logo-icon{
+  width:52px;
+  height:52px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:rgba(229,198,107,.06);
+  display:grid;
+  place-items:center;
+  font-size:28px;
+}
+
+.logo h1{
+  margin:0;
+  color:var(--gold2);
   font-size:25px;
 }
 
-.brand h1{
-  font-size:24px;
-  color:var(--gold2);
-}
-
-.brand span{
-  display:block;
+.logo span{
   color:var(--muted);
   font-size:11px;
-  margin-top:3px;
 }
 
-.profile{
-  width:46px;
-  height:46px;
+.menu{
+  width:45px;
+  height:45px;
+  border:1px solid var(--line);
   border-radius:50%;
-  border:1px solid rgba(217,182,91,.3);
   background:rgba(255,255,255,.04);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  color:var(--gold2);
+  font-size:20px;
 }
-
-/* ================= HERO ================= */
 
 .hero{
+  min-height:650px;
   position:relative;
-  min-height:520px;
-  border-radius:38px;
   overflow:hidden;
-  border:1px solid rgba(217,182,91,.22);
+  border-radius:38px;
+  border:1px solid var(--line);
   background:
-    radial-gradient(circle at 50% 18%,rgba(217,182,91,.16),transparent 28%),
-    linear-gradient(180deg,#123d2d 0%,#0a2b20 42%,#061b14 100%);
-  box-shadow:0 30px 90px rgba(0,0,0,.4);
+    radial-gradient(circle at 50% 25%,rgba(229,198,107,.13),transparent 28%),
+    linear-gradient(180deg,#123f2e,#0b2b20 48%,#061810);
+  box-shadow:0 30px 100px rgba(0,0,0,.42);
 }
 
-.stars{
+.hero-stars{
   position:absolute;
   inset:0;
-  opacity:.5;
+  opacity:.55;
   background-image:
-    radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1px);
-  background-size:85px 85px;
+    radial-gradient(circle,rgba(255,255,255,.7) 1px,transparent 1px);
+  background-size:80px 80px;
 }
 
-.moon{
-  position:absolute;
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  background:#f1dfa0;
-  top:55px;
-  left:9%;
-  box-shadow:0 0 50px rgba(241,223,160,.22);
-}
-
-.moon:after{
-  content:"";
-  position:absolute;
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  background:#123d2d;
-  left:-27px;
-  top:-14px;
-}
-
-.world-title{
+.hero-content{
   position:relative;
-  z-index:3;
+  z-index:2;
   text-align:center;
-  padding-top:58px;
+  padding:65px 20px;
 }
 
-.world-title small{
-  color:#d4cda9;
-  font-size:12px;
+.hero-content small{
+  color:#d4c999;
 }
 
-.world-title h2{
-  font-size:34px;
+.hero-content h2{
   color:var(--gold2);
-  margin:10px 0;
+  font-size:43px;
+  margin:12px 0;
 }
 
-.world-title p{
-  color:#c5c4b8;
-  font-size:13px;
+.hero-content p{
+  color:#c9c6b9;
+  line-height:1.8;
 }
 
-/* ================= WORLD ================= */
-
-.world{
+.portal{
   position:absolute;
-  inset:190px 0 0;
-  overflow:hidden;
-}
-
-.hill{
-  position:absolute;
-  bottom:-120px;
-  width:700px;
-  height:350px;
-  border-radius:50%;
-  background:#0b3525;
-}
-
-.hill.one{right:-180px}
-.hill.two{left:-300px;background:#0a2c21}
-
-.path{
-  position:absolute;
-  width:420px;
-  height:170px;
-  border-radius:50%;
-  border:2px solid rgba(217,182,91,.12);
-  border-bottom-color:rgba(217,182,91,.25);
-  transform:rotate(-15deg);
-  bottom:45px;
   left:50%;
-  margin-left:-210px;
-}
-
-.river{
-  position:absolute;
-  bottom:-30px;
-  left:50%;
-  width:130px;
-  height:390px;
-  transform:translateX(-50%) rotate(8deg);
-  background:linear-gradient(90deg,
-    transparent,
-    rgba(118,207,199,.2),
-    rgba(176,240,228,.4),
-    rgba(118,207,199,.2),
-    transparent);
+  bottom:95px;
+  transform:translateX(-50%);
+  width:220px;
+  height:220px;
   border-radius:50%;
-  filter:blur(1px);
+  background:
+    radial-gradient(circle at 50% 48%,
+      rgba(255,255,255,.25),
+      rgba(107,197,175,.12) 35%,
+      transparent 65%);
+  box-shadow:
+    0 0 80px rgba(109,211,184,.18),
+    inset 0 0 50px rgba(255,255,255,.08);
 }
 
-.tree{
+.portal-ring{
   position:absolute;
-  font-size:55px;
-  filter:drop-shadow(0 8px 12px rgba(0,0,0,.25));
-  animation:float 5s ease-in-out infinite;
+  inset:25px;
+  border:1px solid rgba(229,198,107,.45);
+  border-radius:50%;
+  animation:pulse 3s infinite;
 }
 
-.tree.t1{right:17%;bottom:90px}
-.tree.t2{left:18%;bottom:125px;font-size:45px}
-.tree.t3{right:35%;bottom:150px;font-size:40px}
-
-@keyframes float{
-  50%{transform:translateY(-5px)}
-}
-
-.world-treasure{
-  position:absolute;
-  font-size:35px;
-  animation:appear .5s ease;
-}
-
-@keyframes appear{
-  from{opacity:0;transform:scale(.2)}
-  to{opacity:1;transform:scale(1)}
+@keyframes pulse{
+  50%{transform:scale(1.06);opacity:.55}
 }
 
 .enter{
   position:absolute;
   z-index:5;
-  bottom:25px;
+  bottom:30px;
   left:50%;
   transform:translateX(-50%);
-  width:min(340px,80%);
+  width:min(360px,82%);
   padding:17px;
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:20px;
-  color:#071710;
-  background:linear-gradient(135deg,var(--gold2),var(--gold));
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 15px 35px rgba(0,0,0,.3);
-}
-
-/* ================= DASHBOARD ================= */
-
-.dashboard{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:18px;
-  margin-top:20px;
-}
-
-.card{
-  border:1px solid rgba(217,182,91,.17);
-  border-radius:26px;
-  background:rgba(255,255,255,.035);
-  padding:24px;
-  backdrop-filter:blur(15px);
-}
-
-.card h3{
-  color:var(--gold2);
-  font-size:18px;
-  margin-bottom:7px;
-}
-
-.card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.8;
-}
-
-.dhikr{
-  font-size:24px;
-  text-align:center;
-  line-height:1.8;
-  margin:18px 0 5px;
-}
-
-.counter{
-  text-align:center;
-  color:var(--gold2);
-  font-size:48px;
-  font-weight:bold;
-  margin-bottom:15px;
-}
-
-.dhikr-btn{
-  width:100%;
-  padding:15px;
   border:0;
-  border-radius:17px;
+  border-radius:19px;
   background:linear-gradient(135deg,var(--gold2),var(--gold));
   color:#071710;
   font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
+  font-size:17px;
+  box-shadow:0 16px 40px rgba(0,0,0,.35);
 }
 
-.notice{
-  margin-top:14px;
-  padding:12px;
-  border-radius:14px;
-  background:rgba(217,182,91,.06);
-  color:#aaa99d;
-  font-size:11px;
-  line-height:1.7;
+/* ================= WORLD ================= */
+
+#worldScreen{
+  position:fixed;
+  inset:0;
+  z-index:20;
+  display:none;
+  background:#03100b;
 }
 
-.stat{
+#worldScreen.open{
+  display:block;
+}
+
+#worldCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  touch-action:none;
+}
+
+.world-ui{
+  position:absolute;
+  z-index:5;
+  top:18px;
+  left:18px;
+  right:18px;
   display:flex;
   justify-content:space-between;
-  padding:14px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
+  pointer-events:none;
 }
 
-.stat:last-child{border-bottom:0}
-
-.stat span:first-child{color:#aaa99d}
-.stat strong{color:var(--gold2)}
-
-/* ================= NAV ================= */
-
-.nav{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-top:18px;
+.world-button{
+  pointer-events:auto;
+  min-width:48px;
+  height:48px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:rgba(4,20,13,.76);
+  backdrop-filter:blur(14px);
+  color:var(--gold2);
+  font-size:18px;
 }
 
-.nav-card{
-  border:1px solid rgba(217,182,91,.15);
-  background:rgba(255,255,255,.035);
-  border-radius:22px;
-  padding:19px 8px;
+.world-title{
+  pointer-events:none;
+  padding:9px 17px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(4,20,13,.70);
+  backdrop-filter:blur(14px);
   text-align:center;
-  cursor:pointer;
 }
 
-.nav-card .icon{
-  font-size:27px;
-  margin-bottom:8px;
-}
-
-.nav-card strong{
+.world-title strong{
   display:block;
+  color:var(--gold2);
+}
+
+.world-title small{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.world-bottom{
+  position:absolute;
+  z-index:5;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(520px,calc(100% - 36px));
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(4,20,13,.80);
+  backdrop-filter:blur(16px);
+  text-align:center;
+  color:#d0cdbd;
+  font-size:11px;
+}
+
+.world-bottom strong{
   color:var(--gold2);
   font-size:13px;
 }
 
-.nav-card small{
-  display:block;
-  color:#898d83;
-  font-size:9px;
-  margin-top:5px;
+.zoom{
+  position:absolute;
+  z-index:6;
+  left:18px;
+  bottom:100px;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.zoom button{
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(4,20,13,.78);
+  color:var(--gold2);
+  font-size:20px;
 }
 
 /* ================= MODAL ================= */
@@ -420,25 +299,28 @@ button{font-family:inherit}
 .modal{
   position:fixed;
   inset:0;
-  z-index:50;
+  z-index:100;
   display:none;
   align-items:center;
   justify-content:center;
   padding:20px;
   background:rgba(0,0,0,.72);
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(9px);
 }
 
-.modal.open{display:flex}
+.modal.open{
+  display:flex;
+}
 
 .modal-box{
-  width:min(720px,100%);
-  max-height:85vh;
+  width:min(600px,100%);
+  max-height:82vh;
   overflow:auto;
-  border:1px solid rgba(217,182,91,.25);
+  border:1px solid var(--line);
   border-radius:30px;
-  background:#09231a;
-  padding:26px;
+  background:
+    linear-gradient(145deg,#0c3023,#061810);
+  padding:27px;
   box-shadow:0 30px 100px rgba(0,0,0,.55);
 }
 
@@ -449,423 +331,1215 @@ button{font-family:inherit}
   margin-bottom:20px;
 }
 
-.modal-head h2{color:var(--gold2)}
+.modal-head h2{
+  color:var(--gold2);
+  margin:0;
+}
 
 .close{
+  width:40px;
+  height:40px;
   border:0;
+  border-radius:50%;
   background:rgba(255,255,255,.06);
   color:white;
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  cursor:pointer;
+  font-size:22px;
 }
 
-.info{
-  padding:18px;
-  border-radius:20px;
-  background:rgba(255,255,255,.035);
-  margin-bottom:12px;
+.modal-icon{
+  font-size:50px;
+  text-align:center;
+  margin:10px 0 18px;
 }
 
-.info h3{
+.modal-box h3{
   color:var(--gold2);
-  margin-bottom:8px;
 }
 
-.info p{
-  color:#c2c0b5;
-  font-size:13px;
-  line-height:1.9;
+.modal-box p{
+  color:#c6c3b5;
+  line-height:2;
+  font-size:14px;
 }
 
 .source{
-  color:#a9965e!important;
-  margin-top:8px;
+  color:#b69b54!important;
   font-size:11px!important;
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  z-index:200;
+  left:50%;
+  bottom:35px;
+  transform:translate(-50%,30px);
+  opacity:0;
+  pointer-events:none;
+  padding:13px 20px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(5,25,17,.94);
+  color:var(--gold2);
+  transition:.35s;
+  white-space:nowrap;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:750px){
-  .home{padding:16px 13px 90px}
-  .hero{min-height:590px;border-radius:30px}
-  .dashboard{grid-template-columns:1fr}
-  .nav{grid-template-columns:1fr 1fr}
-  .world-title h2{font-size:28px}
-  .moon{width:75px;height:75px}
-  .moon:after{width:75px;height:75px}
-}
+@media(max-width:700px){
+  .home-inner{
+    padding:13px;
+  }
 
-@media(min-width:900px){
-  .home{padding-top:28px}
-  .hero{min-height:570px}
+  .hero{
+    min-height:620px;
+    border-radius:30px;
+  }
+
+  .hero-content h2{
+    font-size:32px;
+  }
+
+  .portal{
+    width:180px;
+    height:180px;
+    bottom:105px;
+  }
+
+  .world-title{
+    margin:auto;
+  }
+
+  .world-bottom{
+    font-size:10px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- SPLASH -->
-<div class="splash" id="splash">
-  <div class="splash-inner">
-    <div class="splash-icon">🌿</div>
-    <h1>جنتي</h1>
-    <p>ازرع أثرك بذكرك</p>
-  </div>
-</div>
+<!-- HOME -->
 
-<div class="app">
-<main class="home">
+<section id="home">
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-icon">🌿</div>
-      <div>
-        <h1>جنتي</h1>
-        <span>ازرع أثرك بذكرك</span>
-      </div>
-    </div>
+  <div class="home-inner">
 
-    <div class="profile">☰</div>
-  </header>
+    <header class="header">
 
-  <!-- MAIN WORLD -->
-  <section class="hero">
+      <div class="logo">
+        <div class="logo-icon">🌿</div>
 
-    <div class="stars"></div>
-    <div class="moon"></div>
-
-    <div class="world-title">
-      <small>عالم رمزي مستوحى من النصوص الموثقة</small>
-      <h2>عالمك في جنتي</h2>
-      <p>استكشف، تذكر، وتعلّم</p>
-    </div>
-
-    <div class="world" id="world">
-
-      <div class="hill one"></div>
-      <div class="hill two"></div>
-      <div class="river"></div>
-      <div class="path"></div>
-
-      <div class="tree t1">🌴</div>
-      <div class="tree t2">🌳</div>
-      <div class="tree t3">🌿</div>
-
-    </div>
-
-    <button class="enter" id="enterWorld">
-      🌿 ادخل إلى جنتي
-    </button>
-
-  </section>
-
-  <!-- DASHBOARD -->
-  <section class="dashboard">
-
-    <div class="card">
-
-      <h3>📿 ذكرك اليوم</h3>
-      <p>ابدأ بذكر الله، وسيُحفظ سجلك على جهازك.</p>
-
-      <div class="dhikr">
-        لا حول ولا قوة إلا بالله
+        <div>
+          <h1>جنتي</h1>
+          <span>ازرع أثرك بذكرك</span>
+        </div>
       </div>
 
-      <div class="counter" id="counter">0</div>
+      <button class="menu" id="homeMenu">☰</button>
 
-      <button class="dhikr-btn" id="dhikrButton">
-        اذكر الله
+    </header>
+
+    <section class="hero">
+
+      <div class="hero-stars"></div>
+
+      <div class="hero-content">
+
+        <small>عالم رمزي مستوحى من النصوص الموثقة</small>
+
+        <h2>اكتشف عالمك</h2>
+
+        <p>
+          كل ذكر موثق يمكن أن يترك أثرًا رمزيًا في عالمك.
+          استكشف وتعلّم وتذكّر.
+        </p>
+
+      </div>
+
+      <div class="portal">
+        <div class="portal-ring"></div>
+      </div>
+
+      <button class="enter" id="enterWorld">
+        🌿 ادخل إلى جنتي
       </button>
 
-      <div class="notice">
-        💎 الأثر المرئي هنا تمثيل رمزي مستوحى من الحديث،
-        وليس إثباتًا لمقدار الأجر أو حكمًا على قبول العمل.
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <h3>🌿 رحلتك</h3>
-      <p>هذه الصفحة تجمع آثارك المسجلة.</p>
-
-      <div class="stat">
-        <span>الأذكار</span>
-        <strong id="statDhikr">0</strong>
-      </div>
-
-      <div class="stat">
-        <span>الآثار الرمزية</span>
-        <strong id="statEffects">0</strong>
-      </div>
-
-      <div class="stat">
-        <span>المستكشف</span>
-        <strong>V2</strong>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- NAVIGATION -->
-  <section class="nav">
-
-    <div class="nav-card" data-modal="dhikrModal">
-      <div class="icon">📿</div>
-      <strong>أذكاري</strong>
-      <small>أذكار موثقة</small>
-    </div>
-
-    <div class="nav-card" data-modal="deedsModal">
-      <div class="icon">🤲</div>
-      <strong>أعمالي</strong>
-      <small>سجل أعمالك</small>
-    </div>
-
-    <div class="nav-card" data-modal="loveModal">
-      <div class="icon">❤️</div>
-      <strong>من أحب</strong>
-      <small>محبة وصفات</small>
-    </div>
-
-    <div class="nav-card" data-modal="learnModal">
-      <div class="icon">📖</div>
-      <strong>تعلّم</strong>
-      <small>قرآن وسنة</small>
-    </div>
-
-  </section>
-
-</main>
-</div>
-
-<!-- MODALS -->
-
-<div class="modal" id="dhikrModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2>📿 أذكاري</h2>
-      <button class="close">×</button>
-    </div>
-
-    <div class="info">
-      <h3>لا حول ولا قوة إلا بالله</h3>
-      <p>
-        ذِكر ورد في الحديث الصحيح بوصفه كنزًا من كنوز الجنة.
-      </p>
-      <p class="source">
-        صحيح مسلم — حديث 2704
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="deedsModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2>🤲 أعمالي</h2>
-      <button class="close">×</button>
-    </div>
-
-    <div class="info">
-      <h3>سجل أعمالك</h3>
-      <p>
-        يمكنك في الإصدار القادم تسجيل أعمال مثل الصلاة والصدقة
-        والصيام وكفالة اليتيم. التسجيل شخصي ولا يعني أن التطبيق
-        يحكم على قبول العمل أو مقدار أجره.
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="loveModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2>❤️ من أحب</h2>
-      <button class="close">×</button>
-    </div>
-
-    <div class="info">
-      <h3>المرء مع من أحب</h3>
-      <p>
-        مساحة للتعبير عن محبتك لشخص والصفات التي تحبها فيه،
-        مع ربطها بالنصوص الشرعية المناسبة.
-      </p>
-      <p class="source">
-        الميزة الفنية القادمة لن تدّعي أن الشخص من أهل الجنة
-        ولن تصوّره داخل الجنة.
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="learnModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2>📖 تعلّم</h2>
-      <button class="close">×</button>
-    </div>
-
-    <div class="info">
-      <h3>أنهار الجنة</h3>
-      <p>
-        ورد في القرآن وصف الأنهار في الجنة من الماء واللبن
-        والخمر والعسل المصفّى.
-      </p>
-      <p class="source">
-        سورة محمد — الآية 15
-      </p>
-    </div>
-
-    <div class="info">
-      <h3>الظل والأشجار</h3>
-      <p>
-        وردت نصوص صحيحة في عِظم أشجار الجنة وظلالها.
-      </p>
-      <p class="source">
-        من الأحاديث الصحيحة في البخاري ومسلم
-      </p>
-    </div>
-
-    <div class="info">
-      <h3>تنبيه مهم</h3>
-      <p>
-        هذا العالم تصميم رمزي تعليمي وتحفيزي مستوحى من
-        النصوص الموثقة، وليس تصويرًا للجنة الحقيقية.
-      </p>
-    </div>
+    </section>
 
   </div>
+
+</section>
+
+
+<!-- WORLD -->
+
+<section id="worldScreen">
+
+  <canvas id="worldCanvas"></canvas>
+
+  <div class="world-ui">
+
+    <button class="world-button" id="backHome">↩</button>
+
+    <div class="world-title">
+      <strong>جنتي</strong>
+      <small>عالم رمزي للاستكشاف والتذكّر</small>
+    </div>
+
+    <button class="world-button" id="resetView">⌂</button>
+
+  </div>
+
+  <div class="zoom">
+    <button id="zoomIn">+</button>
+    <button id="zoomOut">−</button>
+  </div>
+
+  <div class="world-bottom">
+    <strong>اسحب الشاشة لاستكشاف العالم</strong>
+    <br>
+    اضغط على النهر أو الأشجار أو الآثار لمعرفة النص المرتبط بها
+  </div>
+
+</section>
+
+
+<!-- INFO MODAL -->
+
+<div class="modal" id="infoModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2 id="modalTitle">جنتي</h2>
+
+      <button class="close" id="closeModal">×</button>
+
+    </div>
+
+    <div class="modal-icon" id="modalIcon">🌿</div>
+
+    <div id="modalBody"></div>
+
+  </div>
+
 </div>
+
+
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-/* ================= DATA ================= */
+/* =========================================================
+   DATA
+========================================================= */
 
-const STORAGE_KEY = "jannati_v2_dhikr";
+const STORAGE_KEY = "jannati_v3_state";
 
-let count = Number(localStorage.getItem(STORAGE_KEY) || 0);
+const DEFAULT_STATE = {
+  dhikr: 0,
+  treasures: []
+};
 
-/* ================= ELEMENTS ================= */
+let state = loadState();
 
-const counter = document.getElementById("counter");
-const statDhikr = document.getElementById("statDhikr");
-const statEffects = document.getElementById("statEffects");
-const button = document.getElementById("dhikrButton");
-const world = document.getElementById("world");
-const splash = document.getElementById("splash");
+function loadState(){
 
-/* ================= SAVE ================= */
+  try{
 
-function save(){
-  localStorage.setItem(STORAGE_KEY, String(count));
-}
+    const saved = JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    );
 
-/* ================= WORLD EFFECTS ================= */
+    return {
+      ...DEFAULT_STATE,
+      ...(saved || {})
+    };
 
-function renderEffects(){
+  }catch(e){
 
-  document.querySelectorAll(".world-treasure").forEach(el => el.remove());
+    return {...DEFAULT_STATE};
 
-  const maxVisible = Math.min(count, 40);
-
-  for(let i=0;i<maxVisible;i++){
-
-    const treasure = document.createElement("div");
-
-    treasure.className = "world-treasure";
-    treasure.textContent = "💎";
-
-    const x = 15 + ((i * 37) % 70);
-    const y = 45 + ((i * 29) % 43);
-
-    treasure.style.left = x + "%";
-    treasure.style.top = y + "%";
-
-    world.appendChild(treasure);
   }
 
-  statEffects.textContent = maxVisible;
 }
 
-/* ================= UI ================= */
+function saveState(){
 
-function update(){
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(state)
+  );
 
-  counter.textContent = count;
-  statDhikr.textContent = count;
-
-  renderEffects();
 }
 
-button.addEventListener("click",()=>{
 
-  count++;
+/* =========================================================
+   HOME / WORLD
+========================================================= */
 
-  save();
-  update();
+const home = document.getElementById("home");
+const worldScreen = document.getElementById("worldScreen");
 
-});
+document
+  .getElementById("enterWorld")
+  .addEventListener("click",()=>{
 
-/* ================= MODALS ================= */
+    home.style.display="none";
+    worldScreen.classList.add("open");
 
-document.querySelectorAll(".nav-card").forEach(card=>{
-
-  card.addEventListener("click",()=>{
-
-    const id = card.dataset.modal;
-
-    document.getElementById(id).classList.add("open");
+    resizeCanvas();
+    drawWorld();
 
   });
 
-});
+document
+  .getElementById("backHome")
+  .addEventListener("click",()=>{
 
-document.querySelectorAll(".close").forEach(btn=>{
-
-  btn.addEventListener("click",()=>{
-
-    btn.closest(".modal").classList.remove("open");
+    worldScreen.classList.remove("open");
+    home.style.display="block";
 
   });
 
-});
 
-document.querySelectorAll(".modal").forEach(modal=>{
+/* =========================================================
+   CANVAS
+========================================================= */
 
-  modal.addEventListener("click",(e)=>{
+const canvas =
+  document.getElementById("worldCanvas");
 
-    if(e.target === modal){
-      modal.classList.remove("open");
+const ctx =
+  canvas.getContext("2d");
+
+let W=0;
+let H=0;
+
+let camera={
+  x:1200,
+  y:700,
+  zoom:0.72
+};
+
+const WORLD_WIDTH=3000;
+const WORLD_HEIGHT=1800;
+
+
+/* =========================================================
+   OBJECTS
+========================================================= */
+
+const objects = [
+
+  {
+    id:"river",
+    type:"river",
+    x:1450,
+    y:900,
+    r:300,
+    title:"أنهار الجنة",
+    icon:"💧"
+  },
+
+  {
+    id:"garden",
+    type:"garden",
+    x:720,
+    y:600,
+    r:180,
+    title:"الحدائق والثمار",
+    icon:"🌳"
+  },
+
+  {
+    id:"shade",
+    type:"shade",
+    x:2250,
+    y:520,
+    r:180,
+    title:"الظل",
+    icon:"🌴"
+  },
+
+  {
+    id:"learn",
+    type:"learn",
+    x:2400,
+    y:1250,
+    r:150,
+    title:"تعلّم",
+    icon:"📖"
+  }
+
+];
+
+
+/* =========================================================
+   CANVAS RESIZE
+========================================================= */
+
+function resizeCanvas(){
+
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
+
+  drawWorld();
+
+}
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+/* =========================================================
+   WORLD DRAWING
+========================================================= */
+
+function worldToScreen(x,y){
+
+  return {
+
+    x:
+      (x-camera.x)*camera.zoom
+      +W/2,
+
+    y:
+      (y-camera.y)*camera.zoom
+      +H/2
+
+  };
+
+}
+
+function drawBackground(){
+
+  const gradient=
+    ctx.createLinearGradient(
+      0,0,0,H
+    );
+
+  gradient.addColorStop(0,"#08251c");
+  gradient.addColorStop(.48,"#0b3526");
+  gradient.addColorStop(1,"#04130d");
+
+  ctx.fillStyle=gradient;
+
+  ctx.fillRect(0,0,W,H);
+
+}
+
+function drawStars(){
+
+  ctx.save();
+
+  ctx.globalAlpha=.38;
+
+  for(let i=0;i<90;i++){
+
+    const x=(i*193)%W;
+    const y=(i*97)%H;
+
+    ctx.fillStyle="#f5e7b0";
+
+    ctx.beginPath();
+    ctx.arc(x,y,1.2,0,Math.PI*2);
+    ctx.fill();
+
+  }
+
+  ctx.restore();
+
+}
+
+function drawWorldGround(){
+
+  const p=
+    worldToScreen(
+      WORLD_WIDTH/2,
+      WORLD_HEIGHT/2
+    );
+
+  const w=
+    WORLD_WIDTH*camera.zoom;
+
+  const h=
+    WORLD_HEIGHT*camera.zoom;
+
+  ctx.save();
+
+  ctx.fillStyle="#123c29";
+
+  ctx.beginPath();
+
+  ctx.ellipse(
+    p.x,
+    p.y,
+    w/2,
+    h/2,
+    0,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fill();
+
+  ctx.restore();
+
+}
+
+
+function drawRiver(){
+
+  const points=[];
+
+  for(let i=0;i<=20;i++){
+
+    const y=
+      250+
+      i*70;
+
+    const x=
+      1500+
+      Math.sin(i*.55)*190;
+
+    points.push({x,y});
+
+  }
+
+  ctx.save();
+
+  ctx.beginPath();
+
+  points.forEach((p,i)=>{
+
+    const s=worldToScreen(p.x,p.y);
+
+    if(i===0)
+      ctx.moveTo(s.x,s.y);
+    else
+      ctx.lineTo(s.x,s.y);
+
+  });
+
+  ctx.strokeStyle="rgba(144,224,216,.42)";
+  ctx.lineWidth=115*camera.zoom;
+  ctx.lineCap="round";
+  ctx.stroke();
+
+  ctx.strokeStyle="rgba(214,250,239,.24)";
+  ctx.lineWidth=32*camera.zoom;
+  ctx.stroke();
+
+  ctx.restore();
+
+}
+
+
+function drawTrees(){
+
+  const trees=[
+
+    [500,420,1.2],
+    [720,520,1.4],
+    [930,720,1.0],
+    [580,900,1.2],
+    [2240,470,1.5],
+    [2450,620,1.2],
+    [2050,720,1.0],
+    [2550,920,1.3],
+    [850,1120,1.1],
+    [1100,1050,.9]
+
+  ];
+
+  trees.forEach(t=>{
+
+    const s=
+      worldToScreen(t[0],t[1]);
+
+    const size=
+      70*t[2]*camera.zoom;
+
+    ctx.font=`${size}px Arial`;
+
+    ctx.textAlign="center";
+    ctx.textBaseline="middle";
+
+    ctx.fillText(
+      "🌳",
+      s.x,
+      s.y
+    );
+
+  });
+
+}
+
+
+function drawObjects(){
+
+  objects.forEach(obj=>{
+
+    const s=
+      worldToScreen(obj.x,obj.y);
+
+    const radius=
+      obj.r*camera.zoom;
+
+    ctx.save();
+
+    ctx.globalAlpha=.9;
+
+    ctx.strokeStyle=
+      "rgba(229,198,107,.24)";
+
+    ctx.lineWidth=2;
+
+    ctx.beginPath();
+
+    ctx.arc(
+      s.x,
+      s.y,
+      radius,
+      0,
+      Math.PI*2
+    );
+
+    ctx.stroke();
+
+    ctx.fillStyle=
+      "rgba(4,24,16,.35)";
+
+    ctx.fill();
+
+    ctx.font=
+      `${34*camera.zoom}px Arial`;
+
+    ctx.textAlign="center";
+    ctx.textBaseline="middle";
+
+    ctx.fillText(
+      obj.icon,
+      s.x,
+      s.y
+    );
+
+    ctx.font=
+      `${14*camera.zoom}px Tahoma`;
+
+    ctx.fillStyle="#f3dfa0";
+
+    ctx.fillText(
+      obj.title,
+      s.x,
+      s.y+radius*.55
+    );
+
+    ctx.restore();
+
+  });
+
+}
+
+
+function drawTreasures(){
+
+  state.treasures.forEach((treasure,index)=>{
+
+    const s=
+      worldToScreen(
+        treasure.x,
+        treasure.y
+      );
+
+    ctx.save();
+
+    ctx.shadowColor=
+      "rgba(229,198,107,.8)";
+
+    ctx.shadowBlur=
+      18*camera.zoom;
+
+    ctx.font=
+      `${38*camera.zoom}px Arial`;
+
+    ctx.textAlign="center";
+    ctx.textBaseline="middle";
+
+    ctx.fillText(
+      "💎",
+      s.x,
+      s.y
+    );
+
+    ctx.restore();
+
+  });
+
+}
+
+
+function drawWorld(){
+
+  if(!worldScreen.classList.contains("open"))
+    return;
+
+  drawBackground();
+  drawStars();
+  drawWorldGround();
+  drawRiver();
+  drawTrees();
+  drawObjects();
+  drawTreasures();
+
+}
+
+
+/* =========================================================
+   DRAG / PAN
+========================================================= */
+
+let dragging=false;
+let lastX=0;
+let lastY=0;
+
+function startDrag(x,y){
+
+  dragging=true;
+  lastX=x;
+  lastY=y;
+
+}
+
+function moveDrag(x,y){
+
+  if(!dragging)return;
+
+  const dx=
+    (x-lastX)/camera.zoom;
+
+  const dy=
+    (y-lastY)/camera.zoom;
+
+  camera.x-=dx;
+  camera.y-=dy;
+
+  camera.x=
+    Math.max(0,
+      Math.min(
+        WORLD_WIDTH,
+        camera.x
+      )
+    );
+
+  camera.y=
+    Math.max(0,
+      Math.min(
+        WORLD_HEIGHT,
+        camera.y
+      )
+    );
+
+  lastX=x;
+  lastY=y;
+
+  drawWorld();
+
+}
+
+function stopDrag(){
+
+  dragging=false;
+
+}
+
+
+canvas.addEventListener(
+  "mousedown",
+  e=>startDrag(e.clientX,e.clientY)
+);
+
+window.addEventListener(
+  "mousemove",
+  e=>moveDrag(e.clientX,e.clientY)
+);
+
+window.addEventListener(
+  "mouseup",
+  stopDrag
+);
+
+
+/* TOUCH */
+
+canvas.addEventListener(
+  "touchstart",
+  e=>{
+
+    if(e.touches.length!==1)return;
+
+    startDrag(
+      e.touches[0].clientX,
+      e.touches[0].clientY
+    );
+
+  },
+  {passive:true}
+);
+
+canvas.addEventListener(
+  "touchmove",
+  e=>{
+
+    if(e.touches.length!==1)return;
+
+    moveDrag(
+      e.touches[0].clientX,
+      e.touches[0].clientY
+    );
+
+  },
+  {passive:true}
+);
+
+canvas.addEventListener(
+  "touchend",
+  stopDrag
+);
+
+
+/* =========================================================
+   ZOOM
+========================================================= */
+
+function changeZoom(amount){
+
+  camera.zoom=
+    Math.max(
+      .45,
+      Math.min(
+        1.35,
+        camera.zoom+amount
+      )
+    );
+
+  drawWorld();
+
+}
+
+document
+  .getElementById("zoomIn")
+  .onclick=()=>changeZoom(.1);
+
+document
+  .getElementById("zoomOut")
+  .onclick=()=>changeZoom(-.1);
+
+
+/* =========================================================
+   RESET VIEW
+========================================================= */
+
+document
+  .getElementById("resetView")
+  .onclick=()=>{
+
+    camera={
+      x:1200,
+      y:700,
+      zoom:.72
+    };
+
+    drawWorld();
+
+  };
+
+
+/* =========================================================
+   OBJECT CLICK
+========================================================= */
+
+canvas.addEventListener(
+  "click",
+  e=>{
+
+    if(dragging)return;
+
+    const rect=
+      canvas.getBoundingClientRect();
+
+    const sx=
+      (e.clientX-rect.left);
+
+    const sy=
+      (e.clientY-rect.top);
+
+    const worldX=
+      (sx-W/2)/camera.zoom
+      +camera.x;
+
+    const worldY=
+      (sy-H/2)/camera.zoom
+      +camera.y;
+
+    for(const obj of objects){
+
+      const dx=worldX-obj.x;
+      const dy=worldY-obj.y;
+
+      const distance=
+        Math.sqrt(dx*dx+dy*dy);
+
+      if(distance<=obj.r){
+
+        showObject(obj);
+        return;
+
+      }
+
     }
 
-  });
+  }
+);
 
-});
 
-/* ================= ENTER WORLD ================= */
+/* =========================================================
+   INFO
+========================================================= */
 
-document.getElementById("enterWorld").addEventListener("click",()=>{
+function showObject(obj){
 
-  document.querySelector(".hero").scrollIntoView({
-    behavior:"smooth",
-    block:"center"
-  });
+  let title=obj.title;
+  let icon=obj.icon;
+  let body="";
 
-});
+  if(obj.id==="river"){
 
-/* ================= SPLASH ================= */
+    body=`
+      <h3>🌊 وصف الأنهار</h3>
 
-setTimeout(()=>{
-  splash.classList.add("hide");
-},1800);
+      <p>
+      القرآن الكريم يذكر أنهارًا في الجنة من ماء غير متغير،
+      ولبن لا يتغير طعمه، وخمر لذة للشاربين،
+      وعسل مصفّى.
+      </p>
 
-/* ================= START ================= */
+      <p>
+      هذا المشهد في التطبيق تمثيل بصري رمزي مستوحى من
+      الوصف القرآني، وليس تصويرًا للجنة الحقيقية.
+      </p>
 
-update();
+      <p class="source">
+      المصدر: القرآن الكريم — سورة محمد، الآية 15
+      </p>
+    `;
+
+  }
+
+  else if(obj.id==="garden"){
+
+    body=`
+      <h3>🌳 الحدائق والثمار</h3>
+
+      <p>
+      تظهر في هذا الجزء عناصر نباتية ورمزية مستوحاة من
+      النصوص الواردة في وصف نعيم الجنة.
+      </p>
+
+      <p class="source">
+      هذه صورة فنية رمزية وليست تصويرًا للجنة.
+      </p>
+    `;
+
+  }
+
+  else if(obj.id==="shade"){
+
+    body=`
+      <h3>🌴 الظل</h3>
+
+      <p>
+      الظل والأشجار من المعاني الواردة في النصوص الصحيحة
+      عن نعيم الجنة.
+      </p>
+
+      <p class="source">
+      التمثيل هنا رمزي وتعليمي، وليس وصفًا بصريًا حقيقيًا للجنة.
+      </p>
+    `;
+
+  }
+
+  else if(obj.id==="learn"){
+
+    body=`
+      <h3>📖 تعلّم</h3>
+
+      <p>
+      كل عنصر ديني في جنتي يجب أن يرجع إلى نص موثق
+      قبل أن يتحول إلى أثر داخل التطبيق.
+      </p>
+
+      <p class="source">
+      قاعدة التطبيق: النص الموثق ← بيانات منظمة ← أثر رمزي.
+      </p>
+    `;
+
+  }
+
+  openModal(
+    title,
+    icon,
+    body
+  );
+
+}
+
+
+/* =========================================================
+   TREASURE CLICK
+========================================================= */
+
+function showTreasureInfo(){
+
+  openModal(
+    "كنز من كنوز الجنة",
+    "💎",
+    `
+      <h3>لا حول ولا قوة إلا بالله</h3>
+
+      <p>
+      ورد عن النبي ﷺ أنه وصف «لا حول ولا قوة إلا بالله»
+      بأنها كلمة من كنوز الجنة.
+      </p>
+
+      <p>
+      لذلك يظهر في التطبيق أثر رمزي على شكل كنز عند تسجيل
+      هذا الذكر.
+      </p>
+
+      <p class="source">
+      صحيح مسلم — حديث 2704
+      </p>
+
+      <p class="source">
+      الأثر داخل التطبيق رمزي، ولا يعني أن التطبيق يحكم
+      بمقدار أجر المستخدم أو قبول عمله.
+      </p>
+    `
+  );
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+const modal=
+  document.getElementById("infoModal");
+
+function openModal(title,icon,body){
+
+  document.getElementById("modalTitle")
+    .textContent=title;
+
+  document.getElementById("modalIcon")
+    .textContent=icon;
+
+  document.getElementById("modalBody")
+    .innerHTML=body;
+
+  modal.classList.add("open");
+
+}
+
+document
+  .getElementById("closeModal")
+  .onclick=()=>modal.classList.remove("open");
+
+modal.addEventListener(
+  "click",
+  e=>{
+
+    if(e.target===modal)
+      modal.classList.remove("open");
+
+  }
+);
+
+
+/* =========================================================
+   DHIKR
+========================================================= */
+
+function addDhikr(){
+
+  state.dhikr++;
+
+  const angle=
+    Math.random()*Math.PI*2;
+
+  const radius=
+    250+Math.random()*500;
+
+  const treasure={
+    x:
+      1500+
+      Math.cos(angle)*radius,
+
+    y:
+      900+
+      Math.sin(angle)*radius*.65
+  };
+
+  state.treasures.push(treasure);
+
+  saveState();
+
+  showToast(
+    "💎 أُضيف أثر رمزي إلى عالمك"
+  );
+
+  drawWorld();
+
+}
+
+function showToast(text){
+
+  const toast=
+    document.getElementById("toast");
+
+  toast.textContent=text;
+  toast.classList.add("show");
+
+  setTimeout(
+    ()=>toast.classList.remove("show"),
+    2200
+  );
+
+}
+
+
+/* =========================================================
+   TREASURE DETECTION
+========================================================= */
+
+canvas.addEventListener(
+  "dblclick",
+  e=>{
+
+    const rect=
+      canvas.getBoundingClientRect();
+
+    const sx=
+      e.clientX-rect.left;
+
+    const sy=
+      e.clientY-rect.top;
+
+    const wx=
+      (sx-W/2)/camera.zoom+camera.x;
+
+    const wy=
+      (sy-H/2)/camera.zoom+camera.y;
+
+    for(const t of state.treasures){
+
+      const dx=wx-t.x;
+      const dy=wy-t.y;
+
+      if(Math.sqrt(dx*dx+dy*dy)<80){
+
+        showTreasureInfo();
+        return;
+
+      }
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+window.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="Escape")
+      modal.classList.remove("open");
+
+    if(e.key==="+")
+      changeZoom(.1);
+
+    if(e.key==="-")
+      changeZoom(-.1);
+
+  }
+);
+
+
+/* =========================================================
+   DEMO DHIKR HOTKEY
+========================================================= */
+
+window.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="d" || e.key==="D"){
+
+      addDhikr();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   TEMPORARY TEST BUTTON
+========================================================= */
+
+document
+  .getElementById("homeMenu")
+  .onclick=()=>{
+
+    openModal(
+      "جنتي",
+      "🌿",
+      `
+        <h3>ازرع أثرك بذكرك</h3>
+
+        <p>
+        هذا الإصدار هو بداية العالم التفاعلي.
+        سنضيف إليه تدريجيًا المناطق والآثار والنصوص
+        الموثقة دون اختراع أي ثواب أو وصف غير ثابت.
+        </p>
+      `
+    );
+
+  };
 
 </script>
 
